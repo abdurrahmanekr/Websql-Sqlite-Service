@@ -1,5 +1,5 @@
 # Angularjs SqlService Cordova WebSql Compatible
-#### WebSql ve CordovaSqlite Uyumlu Angularjs Sql Servisi (şu an bu uyumluluk yok, yakın zamanda yapılacaktır)
+#### WebSql ve CordovaSqlite Uyumlu Angularjs Sql Servisi
 
 İonic ile ( veya başka ui ) çalışırken device ile browser üzerinde testleri kolaylaştırmak için yapılmıştır.
 
@@ -16,14 +16,14 @@ Toplamda 5 adet komutu var bunlar : select, insert, update, delete, query
 >  values : Sorgu şartında bulunan '?' ifadelerinin dolduracak array.
 
 
-```
-SqlService.select(table, field, where,values).then(res){ 
+```javascript
+SqlService.select(table, field, where,values).then(function(res){ 
   // res : dönen sonuç
-}
+});
 ```
 
 basit bir select sorgusu
-```
+```javascript
 $scope.list = [];
 SqlService.select("chatList", "*", "chatId = ?", ["C0001"]).then(function(res){
 	angular.forEach(res,function(item, index){
@@ -34,7 +34,7 @@ SqlService.select("chatList", "*", "chatId = ?", ["C0001"]).then(function(res){
 });
 ```
 like kullanımına bir örnek
-```
+```javascript
 $scope.list = [];
 SqlService.select("chatList", "*", "(message LIKE ?)", ['%avare kodcu%']).then(function(res){
 	angular.forEach(res,function(item, index){
@@ -54,13 +54,13 @@ Bunlara benzer kullanımları yapabilirsiniz.
 
 >  values :  row içinde bulunan sütunlara ait değerler
 
-```
+```javascript
 SqlService.insert(table, row, values).then(function(res){
 	//res : dönen sonuç
 });
 ```
 basit bir insert ( zaten başka insert türü yok :D )
-```
+```javascript
 SqlService.insert("chatList", ["message"], ["avare kodcu"]).then(function(res){
 	console.log(res)
 });
@@ -79,13 +79,13 @@ SqlService.insert("chatList", ["message"], ["avare kodcu"]).then(function(res){
 
 >  wValues : Sorgu şartında bulunan '?' ifadelerinin dolduracak array
 
-```
+```javascript
 SqlService.update(table, row, values, where, wValues).then(function(res){
 	//res : dönen sonuç
 });
 ```
 basit bir update işlemi
-```
+```javascript
 SqlService.update("chatList", ["message"], ["avare kodcu"], "chatId = ?", ["C0001"]).then(function(res){
 	console.log(res);
 });
@@ -101,13 +101,13 @@ sorguları değiştirerek çeşitli update işlemi yapılabilir.
 
 >  values : Sorgu şartında bulunan '?' ifadelerinin dolduracak array
 
-```
+```javascript
 SqlService.delete(table, where, values).then(function(res){
 	//res : dönen sonuç
 });
 ```
 basit bir delete işlemi
-```
+```javascript
 SqlService.delete("chatList", "chatId = ?", ["C0001"]).then(function(res){
 	console.log(res);
 });
@@ -120,7 +120,7 @@ Bunu da karışık sorgular içeren, ufak bir işlem içeren, tablo oluşturmak 
 > sql :  sorgunun tamamı
 
 örneğiyle beraber ;
-```
+```javascript
 SqlService.query("CREATE TABLE IF NOT EXISTS chatList (chatId VARCHAR(255) NOT NULL, message TEXT)").then(function(res){
 	console.log(res);
 });
