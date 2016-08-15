@@ -15,9 +15,11 @@ Toplamda 5 adet komutu var bunlar : select, insert, update, delete, query
 
 >  values : Sorgu şartında bulunan '?' ifadelerinin dolduracak array.
 
+>  order : Sorguda bulunacak order işlemine ait string ifade.
+
 
 ```javascript
-SqlService.select(table, field, where,values).then(function(res){ 
+SqlService.select(table, field, where, values, order).then(function(res){ 
   // res : dönen sonuç
 });
 ```
@@ -44,6 +46,18 @@ SqlService.select("chatList", "*", "(message LIKE ?)", ['%avare kodcu%']).then(f
 	})
 });
 ```
+order by kullanımı
+```javascript
+$scope.list = [];
+SqlService.select("chatList", "*", "", "", "rowid, message").then(function(res){
+	angular.forEach(res,function(item, index){
+		$scope.list.push({
+			message: item.message
+		});
+	})
+});
+```
+
 Bunlara benzer kullanımları yapabilirsiniz.
 
 ##insert
