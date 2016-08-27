@@ -26,10 +26,10 @@ YourApplication.service('SqlService', function($q) {
     return {
         db: null,
 
-        execute: function (sql, value, type="array") {
+        execute: function (sql, value, type) {
             var deferred = $q.defer();
-
-            switch(type) {
+            type = type || "array";
+            switch(type){
                 case "array":
                     var list = [];
                     this.db.transaction(function(tx) {
@@ -65,8 +65,9 @@ YourApplication.service('SqlService', function($q) {
             return deferred.promise;
         },
 
-        select: function(table, field = "*", where, values, order) {
+        select: function(table, field, where, values, order) {
             var deferred = $q.defer();
+            field = field || "*";
             var list = [];
 
             if (where && values) {
