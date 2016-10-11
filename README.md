@@ -4,6 +4,12 @@
 İonic ile ( veya başka ui ) çalışırken device ile browser üzerinde testleri kolaylaştırmak için yapılmıştır.
 
 Toplamda 5 adet komutu var bunlar : select, insert, update, delete, query
+## Last Update
+
+> query methodunda geriye dönen değer array biçimine getirildi
+
+> siteye dahil etmek için projenize avareSqlService ismiyle inject etmeniz yeterli 
+
 
 ## select
 

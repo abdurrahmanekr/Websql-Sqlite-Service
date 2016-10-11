@@ -1,7 +1,7 @@
 "use strict";
 
-var YourApplication = angular.module('YourApplication', ['ngCordova']);
-YourApplication.run(function(SqlService, $cordovaSQLite){
+var app = angular.module('avareSqlService', ['ngCordova']);
+app.run(function(SqlService, $cordovaSQLite){
     /* 
         DiKKAT : ngCordova ve $cordovaSQLite yüklü olmalıdır..! 
         Eğer sadece websql kullanacaksanız, cordovaSqlite olmadan da rahatlıkla kullanabilirsiniz.
@@ -22,7 +22,7 @@ YourApplication.run(function(SqlService, $cordovaSQLite){
     SqlService.query("CREATE TABLE IF NOT EXISTS test (name, surname)");
 });
 
-YourApplication.service('SqlService', function($q) {
+app.service('SqlService', function($q) {
     return {
         db: null,
 
@@ -139,9 +139,12 @@ YourApplication.service('SqlService', function($q) {
 
         query: function (sql) {
             var deferred = $q.defer();
+            var list = [];
 
             this.execute(sql, [], "popup").then(function (res) {
-                deferred.resolve(res);
+                for (var i = 0; i < res.rows.length; i++)
+                    list.push(res.rows.item(i));
+                deferred.resolve(list);
             });
 
             return deferred.promise;
