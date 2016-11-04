@@ -91,17 +91,29 @@ app.service('SqlService', function($q) {
             var sql = 'INSERT INTO ' + table + ' (';
             for (var i = 0; i < row.length; i++) sql += row[i] + ",";
             sql = sql.slice(0, sql.length - 1);
-            sql += ') VALUES(';
-            for (var i = 0; i < values.length; i++) sql += "?,";
-            sql = sql.slice(0, sql.length - 1);
-            sql += ")";
+            sql += ') VALUES ';
+
+            if (typeof values[0][0] ==  "Array") {
+                for (var i = 0; i < values.length; i++) {
+                    sql += '(';
+                    for (var j = 0; j < values[i].length; j++)
+                        sql += ( j != values[i].length - 1 ) ? "'"+values[i][j]+"'," : "'"+values[i][j]+"'),";
+                }
+                sql = sql.slice(0, sql.length - 1);
+                values = [];
+            } else {
+                sql += "(";
+                for (var i = 0; i < values.length; i++) sql += "?,";
+                sql = sql.slice(0, sql.length - 1);
+                sql += ")";
+            }
 
             this.execute(sql, values || [], "popup").then(function (res) {
                 deferred.resolve(res);
             });
 
-            return deferred.promise;
-        },
+            return deferred.promise
+ ;       },
 
         delete: function(table, where, values) {
             var deferred = $q.defer();
