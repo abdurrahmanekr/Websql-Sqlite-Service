@@ -1,15 +1,15 @@
-# Angularjs SqlService Cordova WebSql Compatible
-#### WebSql ve CordovaSqlite Uyumlu Angularjs Sql Servisi
+# Angularjs and İonic 2 SqlService. CordovaSqlite and WebSql Compatible
+### WebSql ve CordovaSqlite Uyumlu Angularjs ve İonic 2 SqlService
 
 İonic ile ( veya başka ui ) çalışırken device ile browser üzerinde testleri kolaylaştırmak için yapılmıştır.
 
 Toplamda 5 adet komutu var bunlar : select, insert, update, delete, query
-## Last Update
 
-> query methodunda geriye dönen değer array biçimine getirildi
+## En Son Değişiklikler (Last Update)
 
-> siteye dahil etmek için projenize avareSqlService ismiyle inject etmeniz yeterli 
+> Multiple insert eklendi ( çoklu insert kullanmak normal insert'e oranla daha hızlıdır!)
 
+> Angularjs 2 Servisi Yazıldı
 
 ## select
 
@@ -79,9 +79,16 @@ SqlService.insert(table, row, values).then(function(res){
 	//res : dönen sonuç
 });
 ```
-basit bir insert ( zaten başka insert türü yok :D )
+tekli insert işlemi
 ```javascript
 SqlService.insert("chatList", ["message"], ["avare kodcu"]).then(function(res){
+	console.log(res)
+});
+```
+çoklu insert işlemi
+
+```javascript
+SqlService.insert("chatList", ["message"], [["avare kodcu"], ["Allah birdir!"]]).then(function(res){
 	console.log(res)
 });
 ```
