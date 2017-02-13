@@ -7,7 +7,9 @@ Toplamda 5 adet komutu var bunlar : select, insert, update, delete, query
 
 ## En Son Değişiklikler (Last Update)
 
-> Multiple insert eklendi ( çoklu insert kullanmak normal insert'e oranla daha hızlıdır!)
+> Çoklu insert optimize edildi
+
+> React native desteği getirildi
 
 > Angularjs 2 Servisi Yazıldı
 
