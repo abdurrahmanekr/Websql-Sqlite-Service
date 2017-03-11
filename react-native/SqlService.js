@@ -9,7 +9,7 @@ class SqlService extends NativeEventEmitter {
 
 	async execute(sql, value, type) {
 		type = type || "array";
-		let db = SQLite.openDatabase("bnet.db", "1.0", "Bnet Database", 200000);
+		let db = SQLite.openDatabase("react.db", "1.0", "React Database", 200000);
 		const tx = await (
 					new Promise(resolve =>
 							db.transaction(resolve)
