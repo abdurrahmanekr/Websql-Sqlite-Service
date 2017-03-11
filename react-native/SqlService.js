@@ -1,5 +1,5 @@
 const SQLite 			 = require('react-native-sqlite-storage'); // plugin
-const NativeEventEmitter = require('NativeEventEmitter');		   // super worked
+const NativeEventEmitter = require('EventEmitter');		   // super worked
 
 class SqlService extends NativeEventEmitter {
 
