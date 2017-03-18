@@ -64,7 +64,7 @@ export class SqlService {
             sql = sql.slice(0, sql.length - 1);
             sql += ') VALUES ';
 
-            if (typeof values[0] == "object") {
+            if (typeof values[0] == "object" && values[0]) {
                 for (var i = 0; i < values.length; i++) {
                     sql += '(';
                     for (var j = 0; j < values[i].length; j++)
