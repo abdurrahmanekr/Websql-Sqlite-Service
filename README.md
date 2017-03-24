@@ -3,7 +3,13 @@
 
 İonic ile ( veya başka ui ) çalışırken device ile browser üzerinde testleri kolaylaştırmak için yapılmıştır.
 
-Toplamda 5 adet komutu var bunlar : select, insert, update, delete, query
+Toplamda 5 adet komutu var bunlar:
+
+- [x] [select](https://github.com/abdurrahmanekr/Websql-Sqlite-Service/#select)
+- [x] [insert](https://github.com/abdurrahmanekr/Websql-Sqlite-Service/#insert)
+- [x] [update](https://github.com/abdurrahmanekr/Websql-Sqlite-Service/#update)
+- [x] [delete](https://github.com/abdurrahmanekr/Websql-Sqlite-Service/#delete)
+- [x] [query](https://github.com/abdurrahmanekr/Websql-Sqlite-Service/#query)
 
 ## En Son Değişiklikler (Last Update)
 
