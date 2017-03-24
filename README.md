@@ -7,11 +7,7 @@ Toplamda 5 adet komutu var bunlar : select, insert, update, delete, query
 
 ## En Son Değişiklikler (Last Update)
 
-> Çoklu insert optimize edildi
-
-> React native desteği getirildi
-
-> Angularjs 2 Servisi Yazıldı
+> Javascript Desteği getirildi
 
 ## select
 
@@ -68,7 +64,7 @@ SqlService.select("chatList", "*", "", "", "rowid, message").then(function(res){
 
 Bunlara benzer kullanımları yapabilirsiniz.
 
-##insert
+## insert
 
 > table : tablonun ismini içerir
 
@@ -95,7 +91,7 @@ SqlService.insert("chatList", ["message"], [["avare kodcu"], ["Allah birdir!"]])
 });
 ```
 
-##update
+## update
 
 
 > table : tablonun ismini içerir
@@ -121,7 +117,7 @@ SqlService.update("chatList", ["message"], ["avare kodcu"], "chatId = ?", ["C000
 ```
 sorguları değiştirerek çeşitli update işlemi yapılabilir.
 
-##delete
+## delete
 
 " Silmek ya da silmemek işte bütün mesele bu.." :) Bir veri asla silinmez ama ben yinede komutunu yazdım :)
 > table : tablonun ismini içerir
@@ -142,7 +138,7 @@ SqlService.delete("chatList", "chatId = ?", ["C0001"]).then(function(res){
 });
 ```
 ve son olarak 
-##query
+## query
 
 Bunu da karışık sorgular içeren, ufak bir işlem içeren, tablo oluşturmak için kullanılabilecek sorgular olur diye yazdım
 
