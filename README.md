@@ -3,7 +3,7 @@
 
 İonic ile ( veya başka ui ) çalışırken device ile browser üzerinde testleri kolaylaştırmak için yapılmıştır.
 
-Toplamda 5 adet komutu var bunlar:
+Toplamda 5 adet methodu var bunlar:
 
 - [x] [select](https://github.com/abdurrahmanekr/Websql-Sqlite-Service/#select)
 - [x] [insert](https://github.com/abdurrahmanekr/Websql-Sqlite-Service/#insert)
