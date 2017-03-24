@@ -112,8 +112,8 @@ app.service('SqlService', function($q) {
                 deferred.resolve(res);
             });
 
-            return deferred.promise
- ;       },
+            return deferred.promise;
+        },
 
         delete: function(table, where, values) {
             var deferred = $q.defer();
