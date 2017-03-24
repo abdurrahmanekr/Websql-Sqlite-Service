@@ -1,5 +1,5 @@
-# Angularjs and İonic 2 SqlService. CordovaSqlite and WebSql Compatible
-### WebSql ve CordovaSqlite Uyumlu Angularjs ve İonic 2 SqlService
+# Websql Sqlite Service
+### WebSql ve Sqlite Uyumlu SqlService Kütüphanesi
 
 İonic ile ( veya başka ui ) çalışırken device ile browser üzerinde testleri kolaylaştırmak için yapılmıştır.
 
