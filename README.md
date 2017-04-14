@@ -14,7 +14,9 @@ Toplamda 5 adet methodu var bunlar:
 
 ## En Son Değişiklikler (Last Update)
 
-> Javascript Desteği getirildi
+> React native desteği değiştirildi
+
+> Her sorguda database open oluyordu, bu sorun çözüldü
 
 ## select
 
