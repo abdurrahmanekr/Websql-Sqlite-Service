@@ -1,13 +1,8 @@
-const SQLite = require('react-native-sqlite-storage'); // plugin
-const EventEmitter = require('EventEmitter');		   // super worked
+const SQLite = require('react-native-sqlite-storage'); //plugin
 
-class SqlService extends EventEmitter {
+class SqlService {
 
 	db = SQLite.openDatabase("react.db", "1.0", "React Database", 200000);
-
-	constructor(props) {
-		super(props);
-	}
 
 	async execute(sql, value, type) {
 		type = type || "array";

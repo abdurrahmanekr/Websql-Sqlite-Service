@@ -16,6 +16,8 @@ Toplamda 5 adet methodu var bunlar:
 
 > React native desteği değiştirildi
 
+> EventEmitter bağımlılığı kaldırıldı
+
 > Her sorguda database open oluyordu, bu sorun çözüldü
 
 ## select
