@@ -1,0 +1,35 @@
+{
+  "name": "websqlite",
+  "version": "1.0.0",
+  "description": "websql sqlite library, ionic, react-native, angularjs sqlite library, sqlite kütüphanesi Edit",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^1.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdurrahmanekr/Websql-Sqlite-Service.git"
+  },
+  "keywords": [
+    "websql",
+    "sqlite",
+    "library",
+    "ionic",
+    "react-native",
+    "angularjs",
+    "sqlite",
+    "library"
+  ],
+  "author": "Abdurrahman Eker <abdurrahmaneker58@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abdurrahmanekr/Websql-Sqlite-Service/issues"
+  },
+  "homepage": "https://github.com/abdurrahmanekr/Websql-Sqlite-Service#readme"
+}
