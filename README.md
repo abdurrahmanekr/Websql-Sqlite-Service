@@ -16,7 +16,7 @@ var SqlService = new websqlite();
 
 SqlService.init({
 	id: 'user', // db name
-	dbObject: window, // database object ex: window.
+	dbObject: window, // database object eg: window.openDatabase
 	timeout: 5000 // process waiting time
 })
 ```
