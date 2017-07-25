@@ -1,10 +1,11 @@
 {
   "name": "websqlite",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "websql sqlite library, ionic, react-native, angularjs sqlite library, sqlite kütüphanesi Edit",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-minify": "^1.0.0"

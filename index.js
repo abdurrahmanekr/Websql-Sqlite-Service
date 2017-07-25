@@ -10,7 +10,33 @@ var SqlService = function () {
 	this.isWaiting = false;
 	this.wait = null;
 
-	this.init = function(id, object) {
+	this.console = function(type, value, message) {
+		switch (type) {
+			case 'required':
+				console.warn(`${value} is reqiured.`);
+				break;
+			case 'deprecated':
+				console.warn(`${value} is deprecated. ${message}`);
+				break;
+			default:
+				break;
+		}
+	};
+
+	this.init = function(opt) {
+		if (typeof opt !== 'object')
+			this.console('deprecated', 'init(id, object)', 'Use init({id: '', dbObject: object}) instead.');
+		else {
+			if (!opt.dbObject)
+				this.console('required', 'dbObject');
+			if (!opt.id)
+				this.console('required', 'id');
+		}
+
+		var object = opt.dbObject;
+		var id = opt.id;
+
+		this.timeout =  opt.timeout || this.timeout;
 		this.db = object.openDatabase(id + ".db", "1.0", "Database", 200000);
 	};
 
@@ -193,4 +219,4 @@ var SqlService = function () {
 	};
 };
 
-export default SqlService;
+module.exports = SqlService;
