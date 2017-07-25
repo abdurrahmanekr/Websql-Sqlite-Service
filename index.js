@@ -25,7 +25,7 @@ var SqlService = function () {
 
 	this.init = function(opt) {
 		if (typeof opt !== 'object')
-			this.console('deprecated', 'init(id, object)', 'Use init({id: '', dbObject: object}) instead.');
+			this.console('deprecated', 'init(id, object)', 'Use init({id: \'\', dbObject: object}) instead.');
 		else {
 			if (!opt.dbObject)
 				this.console('required', 'dbObject');
