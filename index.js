@@ -99,8 +99,8 @@ var SqlService = function () {
 				});
 			};
 
-			if (this.RN === true || self.timeout === 0) {
-				this.RN = false;
+			if (self.RN === true || self.timeout === 0) {
+				self.RN = false;
 				if (self.wait !== null)
 					clearTimeout(self.wait);
 
