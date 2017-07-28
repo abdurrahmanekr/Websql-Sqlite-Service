@@ -9,6 +9,7 @@ var SqlService = function () {
 	this.timeout = 1000;
 	this.isWaiting = false;
 	this.wait = null;
+	this.RN = false; // rigthNow
 
 	this.console = function(type, value, message) {
 		switch (type) {
@@ -21,6 +22,11 @@ var SqlService = function () {
 			default:
 				break;
 		}
+	};
+
+	this.rightNow = function() {
+		this.RN = true;
+		return this;
 	};
 
 	this.init = function(opt) {
@@ -40,7 +46,7 @@ var SqlService = function () {
 		this.db = object.openDatabase(id + ".db", "1.0", "Database", 200000);
 	};
 
-	this.execute = function(sql, value, type, rigthNow) {
+	this.execute = function(sql, value, type) {
 		var self = this;
 		type = type || "array";
 
@@ -93,7 +99,8 @@ var SqlService = function () {
 				});
 			};
 
-			if (rigthNow === true || self.timeout === 0) {
+			if (this.RN === true || self.timeout === 0) {
+				this.RN = false;
 				if (self.wait !== null)
 					clearTimeout(self.wait);
 
@@ -132,7 +139,7 @@ var SqlService = function () {
 			if (order)
 				sql += " ORDER BY " + order;
 
-			self.execute(sql, values || [], null, true).then(resolve, reject);
+			self.rightNow().execute(sql, values || []).then(resolve, reject);
 		});
 
 		return deferred;
