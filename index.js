@@ -14,10 +14,10 @@ var SqlService = function () {
 	this.console = function(type, value, message) {
 		switch (type) {
 			case 'required':
-				console.warn(`${value} is reqiured.`);
+				console.warn(value + 'is reqiured.');
 				break;
 			case 'deprecated':
-				console.warn(`${value} is deprecated. ${message}`);
+				console.warn(value + ' is deprecated. + ' + message);
 				break;
 			default:
 				break;
