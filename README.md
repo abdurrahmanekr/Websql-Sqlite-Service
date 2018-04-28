@@ -1,4 +1,4 @@
-![WebSqLite](http://i.hizliresim.com/1LVQY1.png)
+![WebSqLite](https://user-images.githubusercontent.com/15075759/39400628-ac2aeb12-4b3c-11e8-8b1a-b2f2b57f531d.png)
 
 WebSql and Sqlite Compatible SqlService Library
 
