@@ -17,38 +17,38 @@ Toplamda 5 adet methodu var bunlar:
 
 ## select
 
-> table : tablonun ismini içerir.
+> table : Tablonun ismi.
 
->  field : burada çekilecek sütun isimleri yer alıyor.
+>  fields : Çekilecek sütun isimleri.
 
 >  where : Sorgunun şartı.
 
->  values : Sorgu şartında bulunan '?' ifadelerinin dolduracak array.
+>  values : Sorgu şartında bulunan '?' ifadelerini dolduracak array.
 
 >  order : Sorguda bulunacak order işlemine ait string ifade.
 
 
 ```javascript
-SqlService.select(table, field, where, values, order).then(res => {
+SqlService.select(table, fields, where, values, order).then(res => {
   // res : dönen sonuç
 });
 ```
 
-basit bir select sorgusu
+Basit bir select sorgusu:
 ```javascript
 SqlService.select("chatList", "*", "chatId = ?", ["C0001"]).then(res => {
     var result = res.map(x => x.message);
     console.log(result);
 });
 ```
-like kullanımına bir örnek
+like kullanımı:
 ```javascript
 SqlService.select("chatList", "*", "(message LIKE ?)", ['%avare kodcu%']).then(res => {
     var result = res.map(x => x.message);
     console.log(result);
 });
 ```
-order by kullanımı
+order by kullanımı:
 ```javascript
 SqlService.select("chatList", "*", "", "", "rowid, message").then(res => {
     var result = res.map(x => x.message);
@@ -60,24 +60,24 @@ Bunlara benzer kullanımları yapabilirsiniz.
 
 ## insert
 
-> table : tablonun ismini içerir
+> table : Tablonun ismi.
 
->  row : burada insert yapılacak sütun isimleri yer alıyor
+>  fields : insert yapılacak sütun isimleri.
 
->  values :  row içinde bulunan sütunlara ait değerler
+>  values :  fields içinde bulunan sütunlara ait değerler.
 
 ```javascript
-SqlService.insert(table, row, values).then(res => {
+SqlService.insert(table, fields, values).then(res => {
     //res : dönen sonuç
 });
 ```
-tekli insert işlemi
+Tekli insert işlemi:
 ```javascript
 SqlService.insert("chatList", ["message"], ["avare kodcu"]).then(res => {
     console.log(res)
 });
 ```
-çoklu insert işlemi
+Çoklu insert işlemi:
 
 ```javascript
 SqlService.insert(
@@ -95,44 +95,44 @@ SqlService.insert(
 ## update
 
 
-> table : tablonun ismini içerir
+> table : Tablonun ismi.
 
->  row : burada insert yapılacak sütun isimleri yer alıyor
+>  fields : insert yapılacak sütun isimleri.
 
->  values : row içinde bulunan sütunlara ait değerler
+>  values : fields içinde bulunan sütunlara ait değerler.
 
->  where: Sorgu şartı
+>  where: Sorgu şartı.
 
->  wValues : Sorgu şartında bulunan '?' ifadelerinin dolduracak array
+>  wValues : Sorgu şartında bulunan '?' ifadelerini dolduracak array.
 
 ```javascript
-SqlService.update(table, row, values, where, wValues).then(res => {
+SqlService.update(table, fields, values, where, wValues).then(res => {
     //res : dönen sonuç
 });
 ```
-basit bir update işlemi
+Basit bir update işlemi:
 ```javascript
 SqlService.update("chatList", ["message"], ["avare kodcu"], "chatId = ?", ["C0001"]).then(res => {
     console.log(res);
 });
 ```
-sorguları değiştirerek çeşitli update işlemi yapılabilir.
+Sorguları değiştirerek çeşitli update işlemi yapılabilir.
 
 ## delete
 
 
-> table : tablonun ismini içerir
+> table : Tablonun ismi.
 
->  where: Sorgu şartı
+>  where: Sorgu şartı.
 
->  values : Sorgu şartında bulunan '?' ifadelerinin dolduracak array
+>  values : Sorgu şartında bulunan '?' ifadelerini dolduracak array.
 
 ```javascript
 SqlService.delete(table, where, values).then(res => {
     //res : dönen sonuç
 });
 ```
-basit bir delete işlemi
+Basit bir delete işlemi:
 ```javascript
 SqlService.delete("chatList", "chatId = ?", ["C0001"]).then(res => {
     console.log(res);
@@ -143,9 +143,9 @@ ve son olarak
 
 Özel sorgu için kullanılır.
 
-> sql :  sorgunun tamamı
+> sql :  Sorgunun tamamı.
 
-örneğiyle beraber ;
+Örneğiyle beraber;
 ```javascript
 SqlService.query("CREATE TABLE IF NOT EXISTS chatList (chatId VARCHAR(255) NOT NULL, message TEXT)").then(res => {
     console.log(res);
