@@ -9,7 +9,7 @@ var SqlService = function () {
 	this.timeout = 1000;
 	this.isWaiting = false;
 	this.wait = null;
-	this.RN = false; // rigthNow
+	this.RN = false;
 
 	this.console = function(type, value, message) {
 		switch (type) {
@@ -43,12 +43,12 @@ var SqlService = function () {
 		var id = opt.id;
 
 		this.timeout =  opt.timeout || this.timeout;
-		this.db = object.openDatabase(id + ".db", "1.0", "Database", 200000);
+		this.db = object.openDatabase(id + '.db', '1.0', 'Database', 200000);
 	};
 
 	this.execute = function(sql, value, type) {
 		var self = this;
-		type = type || "array";
+		type = type || 'array';
 
 		return new Promise(function(resolve, reject) {
 			var reset = function() {
@@ -61,8 +61,7 @@ var SqlService = function () {
 				var queries = self.stack.queries;
 				var binds = self.stack.binds;
 				reset();
-				if (queries.length < 1)
-					return;
+				if (queries.length < 1) return;
 
 				self.db.transaction(function(tx) {
 					var tmpQ, tmpB, execCount = 0, errors = [];
@@ -113,9 +112,7 @@ var SqlService = function () {
 			self.stack.queries.push(sql);
 			self.stack.binds.push(value);
 
-			if (self.isWaiting === true) {
-				return;
-			}
+			if (self.isWaiting === true) return;
 
 			self.isWaiting = true;
 
@@ -123,23 +120,24 @@ var SqlService = function () {
 		});
 	};
 
-	this.select = function(table, field, where, values, order) {
+	this.select = function({table, field, where, values, order}) {
 		var self = this;
 
 		var deferred = new Promise(function(resolve, reject) {
 
-			field = field || "*";
+			field = field || '*';
 			var list = [];
 
 			if (where && values) {
-				var sql = 'SELECT ' + field + ' FROM ' + table + ' WHERE ' + where;
+				var sql = `SELECT ${field} FROM  ${table} WHERE ${where}`;
 			} else {
-				var sql = 'SELECT ' + field + ' FROM ' + table;
+				var sql = `SELECT ${field} FROM ${table}`;
 			}
 			if (order)
-				sql += " ORDER BY " + order;
+				sql += ` ORDER BY ${order}`;
 
-			self.rightNow().execute(sql, values || []).then(resolve, reject);
+			self.rightNow().execute(sql, values || [])
+			.then(resolve, reject);
 		});
 
 		return deferred;
@@ -149,61 +147,65 @@ var SqlService = function () {
 		var self = this;
 
 		var deferred = new Promise(function(resolve, reject) {
-			var sql = 'INSERT INTO ' + table + ' (';
-			for (var i = 0; i < row.length; i++) sql += row[i] + ",";
+			var sql = `INSERT INTO ${table} (`;
+			for (var i = 0; i < row.length; i++) sql += row[i] + ',';
 			sql = sql.slice(0, sql.length - 1);
-			sql += ') VALUES ';
+			sql += `) VALUES `;
 
-			if (typeof values[0] == "object" && values[0]) {
+			if (typeof values[0] === 'object' && values[0]) {
 				for (var i = 0; i < values.length; i++) {
 					sql += '(';
 					for (var j = 0; j < values[i].length; j++)
-						sql += ( j != values[i].length - 1 ) ? "'"+values[i][j]+"'," : "'"+values[i][j]+"'),";
+						sql += ( j != values[i].length - 1 ) 
+						? `' ${values[i][j]} ',` 
+						: `' ${values[i][j]} '),`
 				}
 				sql = sql.slice(0, sql.length - 1);
 				values = [];
 			} else {
-				sql += "(";
-				for (var i = 0; i < values.length; i++) sql += "?,";
+				sql += '(';
+				for (var i = 0; i < values.length; i++) sql += '?,';
 				sql = sql.slice(0, sql.length - 1);
-				sql += ")";
+				sql += ')';
 			}
 
-			self.execute(sql, values || [], "popup").then(resolve, reject);
+			self.execute(sql, values || [], "popup")
+			.then(resolve, reject);
 		});
 
 		return deferred;
 	};
 
-	this.delete = function(table, where, values) {
+	this.delete = function({table, where, values}) {
 		var self = this;
 
 		var deferred = new Promise(function(resolve, reject) {
 			if (where && values)
-				var sql = 'DELETE FROM ' + table + ' WHERE ' + where;
+				var sql = `DELETE FROM ${table} WHERE ${where}`;
 			else
-				var sql = 'DELETE FROM ' + table;
+				var sql = `DELETE FROM ${table}`;
 
-			self.execute(sql, values || [], "popup").then(resolve, reject);
+			self.execute(sql, values || [], 'popup')
+			.then(resolve, reject);
 		});
 
 		return deferred;
 	};
 
-	this.update = function(table, row, values, where, wValues) {
+	this.update = function({table, row, values, where, wValues}) {
 		var self = this;
 
 		var deferred = new Promise(function(resolve, reject) {
-			var sql = 'UPDATE ' + table + ' SET ';
-			for (var i = 0; i < values.length; i++) sql += row[i] + "=?,";
+			var sql = `UPDATE ${table} SET `;
+			for (var i = 0; i < values.length; i++) sql += row[i] + '=?,';
 			sql = sql.slice(0, sql.length - 1);
 			if (where && wValues) {
-				sql += " WHERE " + where;
+				sql += ` WHERE ${where}`;
 				for (var i = 0; i < wValues.length; i++)
 					values.push(wValues[i]);
 			}
 
-			self.execute(sql, values || [], "popup").then(resolve, reject);
+			self.execute(sql, values || [], 'popup').then(resolve, reject);
 		});
 
 		return deferred;
@@ -215,7 +217,7 @@ var SqlService = function () {
 		var deferred = new Promise(function(resolve, reject) {
 			var list = [];
 
-			self.execute(sql, [], "popup", true).then(function (res) {
+			self.execute(sql, [], 'popup', true).then(function (res) {
 				for (var i = 0; i < res.rows.length; i++)
 					list.push(res.rows.item(i));
 				resolve(list);
