@@ -21,6 +21,15 @@ SqlService.init({
 })
 ```
 
+| name | description |
+| --- | --- |
+| id | database name |
+| dbObject | database object |
+| timeout | sql process timeout |
+| version | database version (default: 1.0)|
+| description | database description (default: Database)|
+
+
 ### API documentation
 [API link](https://github.com/abdurrahmanekr/Websql-Sqlite-Service/tree/master/docs/API.md)
 

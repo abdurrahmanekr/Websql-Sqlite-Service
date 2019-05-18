@@ -41,9 +41,11 @@ var SqlService = function () {
 
 		var object = opt.dbObject;
 		var id = opt.id;
+		var version = opt.version || '1.0';
+		var description = opt.description || 'Database';
 
-		this.timeout =  opt.timeout || this.timeout;
-		this.db = object.openDatabase(id + ".db", "1.0", "Database", 200000);
+		this.timeout = opt.timeout || this.timeout;
+		this.db = object.openDatabase(id + ".db", version, description, 200000);
 	};
 
 	this.execute = function(sql, value, type) {
@@ -91,7 +93,7 @@ var SqlService = function () {
 							}
 						}, function(tx, error) {
 							execCount++;
-							errors.push(error || tx);
+							errors.push(error || tx);
 							if (execCount === queries.length && doResult === true)
 								reject(errors);
 						});
@@ -99,7 +101,7 @@ var SqlService = function () {
 				});
 			};
 
-			if (self.RN === true || self.timeout === 0) {
+			if (self.RN === true || self.timeout === 0) {
 				self.RN = false;
 				if (self.wait !== null)
 					clearTimeout(self.wait);

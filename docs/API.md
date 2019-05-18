@@ -13,7 +13,7 @@ Toplamda 5 adet methodu var bunlar:
 
 ## En Son Değişiklikler
 
-> init(id, object) > init({id: '', dbObject: object})
+> version ve description ayarları eklendi.
 
 ## select
 
