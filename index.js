@@ -211,13 +211,14 @@ var SqlService = function () {
 		return deferred;
 	};
 
-	this.query = function(sql) {
+	this.query = function(sql, values) {
 		var self = this;
+		values = values || [];
 
 		var deferred = new Promise(function(resolve, reject) {
 			var list = [];
 
-			self.execute(sql, [], "popup", true).then(function (res) {
+			self.execute(sql, values, "popup", true).then(function (res) {
 				for (var i = 0; i < res.rows.length; i++)
 					list.push(res.rows.item(i));
 				resolve(list);
