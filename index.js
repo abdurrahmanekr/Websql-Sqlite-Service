@@ -10,6 +10,7 @@ var SqlService = function () {
 	this.isWaiting = false;
 	this.wait = null;
 	this.RN = false; // rigthNow
+	this.DRT = false; // immediately
 
 	this.console = function(type, value, message) {
 		switch (type) {
@@ -26,6 +27,11 @@ var SqlService = function () {
 
 	this.rightNow = function() {
 		this.RN = true;
+		return this;
+	};
+
+	this.directly = function() {
+		this.DRT = true;
 		return this;
 	};
 
@@ -103,13 +109,30 @@ var SqlService = function () {
 
 			if (self.RN === true || self.timeout === 0) {
 				self.RN = false;
-				if (self.wait !== null)
-					clearTimeout(self.wait);
 
-				exec(false);
-				self.stack.queries.push(sql);
-				self.stack.binds.push(value);
-				return exec(true);
+				// this option ignores any pending queries in the queue and runs first
+				if (self.DRT) {
+					self.DRT = false;
+
+					var queries = self.stack.queries.slice();
+					var binds = self.stack.binds.slice();
+					self.stack.queries = [sql];
+					self.stack.binds = [value];
+					exec(true);
+
+					self.stack.queries = queries;
+					self.stack.binds = binds;
+					return;
+				}
+				else {
+					if (self.wait !== null)
+						clearTimeout(self.wait);
+
+					exec(false);
+					self.stack.queries.push(sql);
+					self.stack.binds.push(value);
+					return exec(true);
+				}
 			}
 
 			self.stack.queries.push(sql);
