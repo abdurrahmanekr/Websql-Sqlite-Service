@@ -1,6 +1,6 @@
 {
   "name": "websqlite",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "websql sqlite library, ionic, react-native, angularjs sqlite library, sqlite kütüphanesi Edit",
   "main": "index.js",
   "dependencies": {},

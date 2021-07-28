@@ -55,6 +55,13 @@ var SqlService = function () {
     };
 
     this.execute = function(sql, value, type) {
+        if (!this.db) {
+            const error = 'DB not initialized. You can run "init" method';
+            console.error(error);
+
+            return Promise.reject(error);
+        }
+
         var self = this;
         type = type || "array";
 
